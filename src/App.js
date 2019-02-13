@@ -7,7 +7,7 @@ import SideBar from "./components/SideBar";
 //import { library } from "@fortawesome/fontawesome-svg-core";
 class App extends Component {
   state = {
-    vanues: []
+    venues: []
   }; /*stored places */
 
   componentDidMount() {

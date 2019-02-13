@@ -1,16 +1,27 @@
 import React, { Component } from "react";
+/*import VenueList from "./VenueList"; */
+/*import "../App.css"; */
+import "./SideBar.css";
 import VenueList from "./VenueList";
-import "../App.css";
 
-class SideBar extends Component {
+/*class SideBar extends Component {
   render() {
     return (
       <div className="sideBar">
         <input type={"search"} id={"search"} placeholder={"Filter Venues"} />
-        <VenueList />
+        <VenueList {...this.props} /> 
       </div>
     );
   }
 }
-
-export default SideBar;
+*/
+export default class SideBar extends Component {
+  render() {
+    return (
+      <div className="sideBar">
+        <input type={"search"} id={"search"} placeholder={"Filter Venues"} />
+        <VenueList {...this.props} />
+      </div>
+    );
+  }
+}
