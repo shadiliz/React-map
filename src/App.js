@@ -10,6 +10,12 @@ class App extends Component {
     venues: []
   }; /*stored places */
 
+  /* listitem click   */
+  handleListItemClick = venue => {
+    /*const marker = this.state.markers.find(marker => marker.id === venue.id); */
+    console.log(venue);
+  };
+
   componentDidMount() {
     this.getVenues();
     //this.loadMap();
@@ -82,7 +88,10 @@ class App extends Component {
   render() {
     return (
       <main>
-        <SideBar {...this.state} />
+        <SideBar
+          {...this.state}
+          handleListItemClick={this.handleListItemClick}
+        />
         <div id="map" />
       </main>
     );
