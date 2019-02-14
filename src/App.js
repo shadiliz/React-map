@@ -22,16 +22,6 @@ class App extends Component {
     window.google.maps.event.trigger(marker, "click");
   };
 
-  /*onSidebarLinkClick = e => {
-    let clickedMarker = [...document.querySelectorAll("area")];
-
-    if (document.querySelector(".Map-container")) {
-      clickedMarker.find(m => m.title === e).click();
-    } else {
-      this.onGetLocationsError();
-    }
-  };
-*/
   componentDidMount() {
     this.getVenues();
     //this.loadMap();
@@ -69,6 +59,7 @@ class App extends Component {
         console.log("ERROR! " + error);
       });
   };
+
   // Initialize google map with location & zoom
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
@@ -80,6 +71,7 @@ class App extends Component {
     var infowindow = new window.google.maps.InfoWindow();
     //display markers
     let markers = [];
+    console.log(this.state.venues[0]);
     this.state.venues.map(myVenue => {
       var contentString = `${myVenue.venue.name}`;
 
