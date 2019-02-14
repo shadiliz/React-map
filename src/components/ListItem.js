@@ -14,7 +14,6 @@ export default class ListItem extends Component {
         className="listItem"
         onClick={() => this.props.handleListItemClick(this.props)}
       >
-        {console.log(this.props)}
         {this.props.name}
       </li>
     );
