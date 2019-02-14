@@ -72,8 +72,11 @@ class App extends Component {
     //display markers
     let markers = [];
     console.log(this.state.venues[0]);
+    let boundaries = new window.google.maps.LatLngBounds();
     this.state.venues.map(myVenue => {
-      var contentString = `${myVenue.venue.name}`;
+      var contentString =
+        `<h3>${myVenue.venue.name}<h3>` +
+        `<p>${myVenue.venue.location.formattedAddress[0]}</p>`;
 
       // marker
       var marker = new window.google.maps.Marker({
@@ -91,9 +94,11 @@ class App extends Component {
         // open info
         infowindow.open(map, marker);
       });
+      boundaries.extend(marker.position);
       markers.push(marker);
     });
     this.setState(() => ({ markers, map }));
+    map.fitBounds(boundaries);
   };
 
   render() {
