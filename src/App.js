@@ -3,19 +3,35 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios"; /* I got it from https://github.com/axios/axios */
 import SideBar from "./components/SideBar";
-
+/*import VenueList from "./components/VenueList"; */
+/*import ListItem from "./components/ListItem"; */
 //import { library } from "@fortawesome/fontawesome-svg-core";
+
 class App extends Component {
   state = {
-    venues: []
+    map: undefined,
+    venues: [],
+    markers: []
   }; /*stored places */
 
   /* listitem click   */
   handleListItemClick = venue => {
-    /*const marker = this.state.markers.find(marker => marker.id === venue.id); */
-    console.log(venue);
+    const marker = this.state.markers.find(
+      marker => marker.title === venue.name
+    );
+    window.google.maps.event.trigger(marker, "click");
   };
 
+  /*onSidebarLinkClick = e => {
+    let clickedMarker = [...document.querySelectorAll("area")];
+
+    if (document.querySelector(".Map-container")) {
+      clickedMarker.find(m => m.title === e).click();
+    } else {
+      this.onGetLocationsError();
+    }
+  };
+*/
   componentDidMount() {
     this.getVenues();
     //this.loadMap();
@@ -57,12 +73,13 @@ class App extends Component {
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
       center: { lat: 37.773972, lng: -122.431297 },
-      zoom: 8
+      zoom: 10
     });
 
     // info
     var infowindow = new window.google.maps.InfoWindow();
     //display markers
+    let markers = [];
     this.state.venues.map(myVenue => {
       var contentString = `${myVenue.venue.name}`;
 
@@ -76,13 +93,15 @@ class App extends Component {
         title: myVenue.venue.name
       });
       // click marker
-      marker.addListener("click", function() {
+      marker.addListener("click", () => {
         //change the content
         infowindow.setContent(contentString);
         // open info
         infowindow.open(map, marker);
       });
+      markers.push(marker);
     });
+    this.setState(() => ({ markers, map }));
   };
 
   render() {
