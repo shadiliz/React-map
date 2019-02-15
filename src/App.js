@@ -67,7 +67,19 @@ class App extends Component {
 
   //Filter venues search bar
 
-  filterVenues = query => {};
+  filterVenues = query => {
+    let newQuery = query.toLowerCase();
+    this.setState(prevState => ({
+      markers: prevState.markers.map(each => {
+        if (each.title.toLowerCase().includes(newQuery)) {
+          each.setMap(this.state.map);
+        } else {
+          each.setMap(null);
+        }
+        return each;
+      })
+    }));
+  };
 
   // Initialize google map with location & zoom
   initMap = () => {
@@ -80,7 +92,7 @@ class App extends Component {
     var infowindow = new window.google.maps.InfoWindow();
     //display markers
     let markers = [];
-    console.log(this.state.venues[0]);
+    /* console.log(this.state.venues[0]); */
     let boundaries = new window.google.maps.LatLngBounds();
     this.state.venues.map(myVenue => {
       /* got venue name addresses and city */

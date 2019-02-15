@@ -8,7 +8,12 @@ export default class SideBar extends Component {
   render() {
     return (
       <div className="sideBar">
-        <input type={"search"} id={"search"} placeholder={"Filter Venues"} />
+        <input
+          onChange={event => this.props.filterVenues(event.target.value)}
+          type={"search"}
+          id={"search"}
+          placeholder={"Filter Venues"}
+        />
         <VenueList
           {...this.props}
           handleListItemClick={this.props.handleListItemClick}
