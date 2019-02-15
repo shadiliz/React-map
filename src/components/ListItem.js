@@ -12,10 +12,11 @@ export default class ListItem extends Component {
     return (
       <li
         className="listItem"
+		aria-label={this.props.name}
         onClick={() => this.props.handleListItemClick(this.props)}
       >
-        {this.props.name}
-      </li>
+	{this.props.name}
+	</li>
     );
   }
 }

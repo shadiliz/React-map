@@ -126,13 +126,14 @@ class App extends Component {
 
   render() {
     return (
+      //main has predefined label and role
       <main>
         <SideBar
           {...this.state}
           handleListItemClick={this.handleListItemClick}
           filterVenues={this.filterVenues}
         />
-        <div id="map" />
+        <div id="map" aria-label="Google Map" role="Application" />
       </main>
     );
   }

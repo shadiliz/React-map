@@ -18,14 +18,17 @@ export default class VenueList extends Component {
   render() {
     return (
       <ol className="venueList">
-        {this.props.venues &&
-          this.props.venues.map((venue, idx) => (
-            <ListItem
-              key={idx}
-              name={venue.venue.name}
-              handleListItemClick={this.props.handleListItemClick}
-            />
-          ))}
+        {this.props.markers &&
+          this.props.markers
+            //filter list items
+            .filter(marker => marker.map !== null)
+            .map((marker, idx) => (
+              <ListItem
+                key={idx}
+                name={marker.title}
+                handleListItemClick={this.props.handleListItemClick}
+              />
+            ))}
       </ol>
     );
   }
