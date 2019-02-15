@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import axios from "axios"; /* I got it from https://github.com/axios/axios */
 import SideBar from "./components/SideBar";
+import ListItem from "./components/ListItem";
 /*import VenueList from "./components/VenueList"; */
 /*import ListItem from "./components/ListItem"; */
 //import { library } from "@fortawesome/fontawesome-svg-core";
@@ -20,7 +21,11 @@ class App extends Component {
       marker => marker.title === venue.name
     );
     window.google.maps.event.trigger(marker, "click");
-  };
+    marker.setAnimation(window.google.maps.Animation.BOUNCE);
+    setTimeout(() => {
+      marker.setAnimation(null);
+    }, 2100);
+  }; /* set animate to marker */
 
   componentDidMount() {
     this.getVenues();
@@ -60,6 +65,10 @@ class App extends Component {
       });
   };
 
+  //Filter venues search bar
+
+  filterVenues = query => {};
+
   // Initialize google map with location & zoom
   initMap = () => {
     var map = new window.google.maps.Map(document.getElementById("map"), {
@@ -74,9 +83,11 @@ class App extends Component {
     console.log(this.state.venues[0]);
     let boundaries = new window.google.maps.LatLngBounds();
     this.state.venues.map(myVenue => {
+      /* got venue name addresses and city */
       var contentString =
         `<h3>${myVenue.venue.name}<h3>` +
-        `<p>${myVenue.venue.location.formattedAddress[0]}</p>`;
+        `<p>${myVenue.venue.location.formattedAddress[0]}</p>` +
+        `<p>${myVenue.venue.location.formattedAddress[1]}</p>`;
 
       // marker
       var marker = new window.google.maps.Marker({
@@ -107,6 +118,7 @@ class App extends Component {
         <SideBar
           {...this.state}
           handleListItemClick={this.handleListItemClick}
+          filterVenues={this.filterVenues}
         />
         <div id="map" />
       </main>
