@@ -3,11 +3,11 @@
   padding: 0.5rem;
   width: 80%;
   display: flex;
+  margin: auto;
   margin-top: 1rem;
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   list-style: none;
   background-color: #2081bd;
-  color: white;
   align-items: center;
 }

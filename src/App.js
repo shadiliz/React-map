@@ -133,7 +133,7 @@ class App extends Component {
           handleListItemClick={this.handleListItemClick}
           filterVenues={this.filterVenues}
         />
-        <div id="map" aria-label="Google Map" role="Application" />
+        <div id="map" aria-label="Google Map" tabIndex='0'/>
       </main>
     );
   }

@@ -17,7 +17,7 @@ import ListItem from "./ListItem";
 export default class VenueList extends Component {
   render() {
     return (
-      <ol className="venueList">
+      <ol className="venueList" aria-label="List Of Restaurant" tabIndex='0'>
         {this.props.markers &&
           this.props.markers
             //filter list items

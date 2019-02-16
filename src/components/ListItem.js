@@ -11,8 +11,8 @@ export default class ListItem extends Component {
   render() {
     return (
       <li
-        className="listItem"
-		aria-label={this.props.name}
+        className="listItem" 
+		aria-label={this.props.name} tabIndex='0'
         onClick={() => this.props.handleListItemClick(this.props)}
       >
 	{this.props.name}
