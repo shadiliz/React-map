@@ -5,12 +5,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project is required to complete the Front-End Nanodegree Course.
 
 ==============
-## Table Of Contents
- - [Describtion] (#describtion)
- - [Dependecies] (#dependecies)
- - [Instructions] (#Instructions)
+# Table Of Contents
+ - [Description](#description)
+ - [Dependecies](#dependecies)
+ - [Instructions](#Instructions)
 
-## Describtion
+## Description
 
 You get information about Restaurants in San Francisco.
 
@@ -31,6 +31,3 @@ How to run the Project:
 3. You need to use your own Google Map API and FourSqure API'S Client ID and Client Secret.
 4. After following steps above you can run `npm start` and the Application will Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-
-## Author 
-### Maryam Zavieh
