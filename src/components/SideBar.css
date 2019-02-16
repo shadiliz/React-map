@@ -1,10 +1,11 @@
 .sideBar {
   width: 30%;
-  float: left;
+  float: left; 
   height: 100vh; /*  vh is viewport height, so setting height equal to the browser height */
   min-width: 300px;
   padding: 0; 
   overflow: auto;
+  
 }
 #search {
   width: 100%;
