@@ -2,25 +2,14 @@ import React, { Component } from "react";
 import ListItem from "./ListItem";
 /*import "./VenueList.css";*/
 //import "../App.css";
-/*class VenueList extends Component {
-  render() {
-    return (
-      <ol className="venueList">
-        {this.props.venues.map((venue, i) => (
-          <li key={i}>{venue.venue.name}</li>
-        ))}
-      </ol>
-    );
-  }
-}
-*/
-export default class VenueList extends Component {
+
+ class VenueList extends Component {
   render() {
     return (
       <ol className="venueList" aria-label="List Of Restaurant" tabIndex='0'>
         {this.props.markers &&
           this.props.markers
-            //filter list items
+            //filters list items
             .filter(marker => marker.map !== null)
             .map((marker, idx) => (
               <ListItem
@@ -33,3 +22,5 @@ export default class VenueList extends Component {
     );
   }
 }
+
+export default VenueList;

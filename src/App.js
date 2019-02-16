@@ -4,8 +4,7 @@ import "./App.css";
 import axios from "axios"; /* I got it from https://github.com/axios/axios */
 import SideBar from "./components/SideBar";
 import ListItem from "./components/ListItem";
-/*import VenueList from "./components/VenueList"; */
-/*import ListItem from "./components/ListItem"; */
+
 //import { library } from "@fortawesome/fontawesome-svg-core";
 
 class App extends Component {
@@ -128,7 +127,7 @@ class App extends Component {
     return (
       //main has predefined label and role
       <main>
-        <SideBar
+        <SideBar		
           {...this.state}
           handleListItemClick={this.handleListItemClick}
           filterVenues={this.filterVenues}
@@ -154,6 +153,4 @@ function loadScript(url) {
 }
 
 export default App;
-/* Client Id: LHZQPZ34RU142UYBJEWNFBZQPC2D4YTK2DQP1MILFTA1AKKQ */
-/* Client Secret
-QMMM05UD3NFBBWABYW30LXKO2YO4ZP2005X4PURMNJRN4TDK */
+

@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import "./SideBar.css";
 import VenueList from "./VenueList";
 
-export default class SideBar extends Component {
+ class SideBar extends Component {
   render() {
     return (
       <div className="sideBar">
@@ -23,3 +23,5 @@ export default class SideBar extends Component {
     );
   }
 }
+
+export default SideBar;
