@@ -3,9 +3,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Neighborhood Map
 
  ## Table Of Contents
-1. [Describtion]
-2. [Dependecies]
-3. [Instuctions]
+ - [Describtion]
+ - [Dependecies]
+ - [Instuctions]
 
 ## Describtion
 
