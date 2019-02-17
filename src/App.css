@@ -36,6 +36,13 @@
 	min-width: 300px; 
 }
 
+
+.Unload {
+	padding: 20px;
+	font-size: 20px;
+	text-align: center;
+}
+
 html,
 body {
   height: 100%;

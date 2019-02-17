@@ -11,7 +11,8 @@ class App extends Component {
   state = {
     map: undefined,
     venues: [],
-    markers: []
+    markers: [],
+	mapError: false 
   }; /*stored places */
 
   /* listitem click   */
@@ -26,17 +27,36 @@ class App extends Component {
     }, 2100);
   }; /* set animate to marker */
 
+/* A function that google maps calls if the api key is invalid. */
+  gm_authFailure = () => {
+    this.props.gm_authFailure("Authorization failed!");
+  }
+
   componentDidMount() {
     this.getVenues();
     //this.loadMap();
+	window.gm_authFailure = this.gm_authFailure;
+  }
+
+gm_authFailure = () => {
+    this.setState(() => ({ mapError: true }));
   }
 
   loadMap = () => {
+	let that = this;
     loadScript(
       "https://maps.googleapis.com/maps/api/js?key=AIzaSyCyzrGZk2XCYhmGbAEqNWqnAvzQfP5bn9U&v=3&callback=initMap"
-    );
+    , function (error) {
+		if (!error) {
+			console.log('Map loaded succefullt.');
+		} else {
+			that.setState(() => ({ mapError: true}));
+		}
+	});
     window.initMap = this.initMap;
   };
+
+
 
   getVenues = () => {
     const endPoint = "https://api.foursquare.com/v2/venues/explore?";
@@ -60,6 +80,8 @@ class App extends Component {
         );
       })
       .catch(error => {
+		alert('Sorry! unable to fetch the venues from the Foursquare.');
+		// Fixed
         console.log("ERROR! " + error);
       });
   };
@@ -132,16 +154,23 @@ class App extends Component {
           handleListItemClick={this.handleListItemClick}
           filterVenues={this.filterVenues}
         />
+		{
+		!this.state.mapError &&
         <div id="map" aria-label="Google Map" tabIndex='0'/>
+		}
+		{
+		this.state.mapError && 
+		<div className="Unload">Oops! we are unable to load map.</div> 
+		}
       </main>
     );
   }
 }
-/*
- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
-    async defer></script>
-*/
-function loadScript(url) {
+
+ /*<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"
+    async defer></script> */
+
+function loadScript(url, callback) {
   var index = window.document.getElementsByTagName(
     "script"
   )[0]; /* window is global object of my document*/
@@ -149,6 +178,9 @@ function loadScript(url) {
   script.src = url;
   script.async = true;
   script.defer = true;
+	script.addEventListener('error', function () {
+		callback(true);
+	});
   index.parentNode.insertBefore(script, index);
 }
 
